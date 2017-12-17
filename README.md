@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Small Demo using Angular 5 / Rails 5 API / MongoDB / Google Maps API
 
-Things you may want to cover:
 
-* Ruby version
+Datasets:
 
-* System dependencies
+http://openflight.com
+    airlines
+    airports
+    routes
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+http://federalgovernmentzipcodes.us/
+    zipcode

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :zipcodes
   resources :routes
   resources :routesses
   resources :airports
