@@ -8,8 +8,8 @@ class Airport
   field :icao, type: String	#4-letter ICAO code.
   field :latitude, type: Float	#Decimal degrees, usually to six significant digits. Negative is South, positive is North.
   field :longitude, type: Float	#Decimal degrees, usually to six significant digits. Negative is West, positive is East.
-  field :altitude, type: String	#In feet.
-  field :timezone, type: String	#Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5.
+  field :altitude, type: Integer	#In feet.
+  field :timezone, type: Integer	#Hours offset from UTC. Fractional hours are expressed as decimals, eg. India is 5.5.
   field :dst, type: String	#Daylight savings time. One of E (Europe), A (US/Canada), S (South America), O (Australia), Z (New Zealand), N (None) or U (Unknown). See also: Help: Time
   field :tz, type: String #database time zone	Timezone in "tz" (Olson) format, eg. "America/Los_Angeles".
   field :type, type: String	#Type of the airport. Value "airport" for air terminals, "station" for train stations, "port" for ferry terminals and "unknown" if not known. In airports.csv, only type=airport is included.
