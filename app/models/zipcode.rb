@@ -25,9 +25,8 @@ class Zipcode
   spatial_index :location, {bits: 24, min: -180, max: 180}
   spatial_scope :location
 
-  #scope query: ->(q){ any_of( { zipcode: Regexp.new("#{q.gsub(/\D/, '')}") }, { city: Regexp.new("#{q}", true) }, { state: Regexp.new("#{q}", true) } ) }
-
   def self.query(q)
+    return if !q
     limit = q.length < 4 ? 10 : 25
     numbers_only_q = q.gsub(/\D/, '')
     self.or( { zipcode: /#{numbers_only_q.blank? ? 'AA' : numbers_only_q}/ }, { city: /#{q}/i }, { state: /#{q}/i } ).limit(limit)

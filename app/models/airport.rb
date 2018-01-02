@@ -24,5 +24,11 @@ class Airport
       where(location: {'$near': [x.to_f, y.to_f], '$maxDistance': distance.to_f / EARTH_DEGREE_MILES})
     end
 
+    def self.query(q)
+      return if !q
+      limit = q.length < 4 ? 10 : 25
+      numbers_only_q = q.gsub(/\D/, '')
+      self.or(  { city: /#{q}/i }, { country: /#{q}/i }, { name: /#{q}/i }, { iata: /#{q}/i }, { icao: /#{q}/i } ).limit(limit)
+    end
 
 end
