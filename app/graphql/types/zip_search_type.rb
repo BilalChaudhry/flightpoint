@@ -4,14 +4,22 @@ Types::ZipSearchType = GraphQL::ObjectType.define do
     field :airports do
         type -> { types[Types::AirportType]}
         resolve -> (obj, args, ctx){
-            obj[:airports]
+            Airport.query(obj[:q])
          }
     end
 
     field :zipcodes do
         type -> { types[Types::ZipCodeType]}
-        resolve -> (obj, args, ctx){
-            obj[:zipcodes]
+        resolve -> (obj, args, ctx){            
+            Zipcode.query(obj[:q])
          }
     end
+
+    field :airlines do
+        type -> { types[Types::AirlineType]}
+        resolve -> (obj, args, ctx){
+            Airline.query(obj[:q])
+         }
+    end
+
 end

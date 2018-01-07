@@ -25,8 +25,7 @@ Types::QueryType = GraphQL::ObjectType.define do
 
     resolve ->(root, args, ctx) {      
       {
-        airports: Airport.query(args[:q]),
-        zipcodes: Zipcode.query(args[:q])
+        q: args[:q]
       }
     }
   end
