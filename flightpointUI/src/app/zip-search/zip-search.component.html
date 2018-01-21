@@ -1,10 +1,14 @@
 <div id="zip-search">
     <div>
         <div class="row">
-            <div class="col-md-12 form-inline my-2 my-lg-0 pull-left">
-                <input (keyup.enter)="postQuery(query.value)" #query class="form-control mr-sm-2" type="text" placeholder="Search Airports, Trains, Locations, and Airlines">
-                <button (click)="postQuery(query.value);" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                
+            <div class="col-md-12 form-inline my-2 my-lg-0 pull-left" [ngClass]="{'with-results': resultsReady, 'no-results': !resultsReady}">
+                <input (keyup.enter)="postQuery(query.value)" #query (input)="onQueryChange($event.target.value)" class="form-control mr-sm-2"
+                    type="text" placeholder="Search Airports, Trains, Locations, and Airlines">
+
+                <button *ngIf="resultsReady" type="button" class="btn btn-outline-success my-2 my-sm-0" (click)="isCollapsed = !isCollapsed"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                    Results
+                </button>
             </div>
             <div class="pull-right" [hidden]="!loading">
                 <i class="fa-li fa fa-spinner fa-spin"></i>
@@ -12,32 +16,38 @@
         </div>
     </div>
 
-    <div class="card" *ngIf="resultsReady">
-        <div class="card-block row">
-            <div class="col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item active font-weight-bold">Airlines:</li>
-                    <li class="list-group-item" *ngFor="let airline of results?.airlines ">
-                        {{airline.name}} {{airline.iata}}/{{airline.icao}}
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-group">
-                        <li class="list-group-item active font-weight-bold">Airports:</li>
-                    <li class="list-group-item" *ngFor="let airport of results?.airports">
-                        {{airport.name}} {{airport.iata}}/{{airport.icao}}
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-group">
-                    <li class="list-group-item active font-weight-bold">Locations:</li>
-                    <li class="list-group-item" *ngFor="let zipcode of results?.zipcodes">
-                        {{zipcode.city}} / {{zipcode.state}} - {{zipcode.name}}
-                    </li>
-                </ul>
+    <div class="container" id="collapseExample" [ngbCollapse]="isCollapsed">
+        <div class="result-pane" *ngIf="resultsReady">
+            <div class="row">
+                <div class="col-md-4 result-content">
+                    <h2 class="shift-right">Airlines</h2>
+                    <ul>
+                        <li (click)="show('airline', airline)" *ngFor="let airline of results?.airlines ">
+                            {{airline.name}} {{airline.iata}}/{{airline.icao}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 result-content">
+                    <h2>Airports</h2>
+                    <ul class="shift-left">
+                        <li (click)="show('airport', airport)" *ngFor="let airport of results?.airports">
+                             {{airport.name}} {{airport.iata}}/{{airport.icao}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 result-content">
+                    <h2>Locations</h2>
+                    <ul class="shift-left">
+                        <li (click)="show('zipcode', zipcode)" *ngFor="let zipcode of results?.zipcodes">
+                            {{zipcode.city}} / {{zipcode.state}} - {{zipcode.name}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+
 </div>

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AgmCoreModule } from '@agm/core';
+
 // apollo
 import { GraphQLClient } from './graphql.client';
 
@@ -14,10 +15,11 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { MapsComponent } from './maps/maps.component';
 import { environment } from '../environments/environment';
+import { ZipMapComponent } from './zip-map/zip-map.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ZipSearchComponent, NavComponent, FooterComponent, MapsComponent
+    AppComponent, ZipSearchComponent, NavComponent, FooterComponent, MapsComponent, ZipMapComponent
   ],
   imports: [
     BrowserModule, FormsModule, NgbModule.forRoot(),

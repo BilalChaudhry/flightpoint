@@ -1,11 +1,79 @@
 
-    input[type=text] {
+    .no-results input[type=text] {
         width: 250px;
         -webkit-transition: width 0.4s ease-in-out;
         transition: width 0.4s ease-in-out;
     }
     
     /* When the input field gets focus, change its width to 100% */
-    input[type=text]:focus {
+    .no-results input[type=text]:focus {
+        width: 100%;
+    }
+
+
+    .with-results input[type=text] {
+        width: 250px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+    
+    /* When the input field gets focus, change its width to 100% */
+    .with-results input[type=text]:focus {
         width: 90%;
+    }
+
+
+    #zip-search{
+        position: relative;
+    }
+    .result-pane{
+        width: 100%;
+        z-index: 1000;
+        display: block;
+        float: left;  
+        z-index: 500;
+        position: absolute;
+        left: 0px;
+        top: 21px;
+        opacity: .87;
+        background-color: aliceblue;
+        min-height: 500px;
+        max-height: 500px;
+        box-shadow: 0 0 0 1px #AAAAAA;
+        border-radius: 0px 0px 5px 5px;
+        border-color: #AAAAAA;
+    }
+
+    .result-pane .result-content{
+        opacity: 1;
+        position: relative;
+    }
+
+    .result-content ul {
+        list-style: none;
+        overflow-y: scroll;
+        position: absolute;
+        max-height: 435px;
+    }
+
+    .result-content .shift-left{
+        margin-left: -50px;
+    }
+
+    .result-content .shift-right{
+        margin-left: 50px;
+    }
+
+   
+    .result-content li {
+        padding: 5px;
+    }
+
+    .result-content li a{
+        padding: 5px;
+    }
+
+
+    .result-content li:hover{
+        background-color: #F0F0F0;
     }
